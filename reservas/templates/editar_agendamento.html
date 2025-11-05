@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+<h2 class="mb-4">{{ titulo }}</h2>
+
+<form method="post">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <label for="id_nome" class="form-label">Nome</label>
+    {{ form.nome|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_email" class="form-label">Email</label>
+    {{ form.email|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_telefone" class="form-label">Telefone</label>
+    {{ form.telefone|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_servico" class="form-label">Serviço</label>
+    {{ form.servico|add_class:"form-select" }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_data_hora" class="form-label">Data/Hora</label>
+    {{ form.data_hora|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_observacoes" class="form-label">Observações</label>
+    {{ form.observacoes|add_class:"form-control" }}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+  <a href="{% url 'agendamentos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

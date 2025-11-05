@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Serviços Disponíveis</h2>
+<div class="row">
+  {% for servico in servicos %}
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ servico.nome }}</h5>
+        <p>{{ servico.descricao }}</p>
+        <p><strong>R$ {{ servico.preco }}</strong></p>
+        {% if user.is_authenticated %}
+        <!-- Passa o id do serviço para a view de novo agendamento -->
+        <a href="{% url 'novo_agendamento' %}?servico={{ servico.id }}" class="btn btn-primary">Agendar</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-secondary">Entrar para agendar</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

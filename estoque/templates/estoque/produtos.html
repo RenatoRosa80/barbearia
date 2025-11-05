@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Estoque de Produtos</h2>
+<a href="{% url 'novo_produto' %}" class="btn btn-primary mb-3">Novo Produto</a>
+<a href="{% url 'novo_movimento' %}" class="btn btn-secondary mb-3">Registrar Movimento</a>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Preço Unitário</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for produto in produtos %}
+    <tr>
+      <td>{{ produto.nome }}</td>
+      <td>{{ produto.quantidade }}</td>
+      <td>R$ {{ produto.preco_unitario }}</td>
+      <td>{{ produto.descricao }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nenhum produto cadastrado.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

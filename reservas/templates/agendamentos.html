@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Meus Agendamentos</h2>
+
+<a href="{% url 'novo_agendamento' %}" class="btn btn-primary mb-3">Novo Agendamento</a>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Serviço</th>
+      <th>Data/Hora</th>
+      <th>Observações</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ag in agendamentos %}
+    <tr>
+      <td>{{ ag.nome }}</td>
+      <td>{{ ag.email }}</td>
+      <td>{{ ag.telefone }}</td>
+      <td>{{ ag.servico.nome }}</td>
+      <td>{{ ag.data_hora|date:"d/m/Y H:i" }}</td>
+      <td>{{ ag.observacoes }}</td>
+      <td>{{ ag.get_status_display }}</td>
+      <td>
+        {% if ag.status == 'pendente' %}
+        <a href="{% url 'editar_agendamento' ag.pk %}" class="btn btn-sm btn-warning">Editar</a>
+        <a href="{% url 'pagar_agendamento' ag.pk %}" class="btn btn-sm btn-success">Pagar</a>
+        <a href="{% url 'cancelar_agendamento' ag.pk %}" class="btn btn-sm btn-danger">Cancelar</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="8">Nenhum agendamento encontrado.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
