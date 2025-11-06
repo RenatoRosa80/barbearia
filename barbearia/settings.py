@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-6n*0-k_9jmq#b1q0m6j7c=h_-)h^@rc#d8+)__!)jw*itf8hg3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["barbearia-cmrg.onrender.com", "127.0.0.1", "localhost"]
+
+
 
 
 # Application definition
